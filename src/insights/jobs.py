@@ -7,7 +7,6 @@ class ProcessJobs:
         self.jobs_list: List[Dict[str, str]] = []
 
     def read(self, path: str) -> None:
-       
         try:
             with open(path, mode="r", newline="", encoding="utf-8") as file:
                 self.jobs_list = list(csv.DictReader(file))
@@ -17,7 +16,6 @@ class ProcessJobs:
             print(f"Erro ao ler o arquivo: {e}")
 
     def get_unique_job_types(self) -> List[str]:
-      
         job_types = set()
         for job in self.jobs_list:
             job_type = job.get("job_type")
@@ -30,8 +28,7 @@ class ProcessJobs:
     ) -> List[Dict[str, str]]:
        
         if not isinstance(filter, dict):
-            raise TypeError("O filtro deve ser um dicionário")
-
+         raise TypeError("O filtro deve ser um dicionário")
         industry = filter.get("industry")
         job_type = filter.get("job_type")
 
@@ -41,5 +38,6 @@ class ProcessJobs:
         return [
             job
             for job in jobs
-            if job.get("industry") == industry and job.get("job_type") == job_type
+            if job.get("industry") == industry and
+             job.get("job_type") == job_type
         ]

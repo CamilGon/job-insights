@@ -7,7 +7,6 @@ class ProcessSalaries(ProcessJobs):
         super().__init__()
 
     def get_max_salary(self) -> int:
-        
         max_salary = 0
         for job in self.jobs_list:
             max_salary_str = job.get("max_salary")
@@ -16,7 +15,6 @@ class ProcessSalaries(ProcessJobs):
         return max_salary
 
     def get_min_salary(self) -> int:
-        
         min_salaries = [
             int(job["min_salary"])
             for job in self.jobs_list
@@ -26,8 +24,10 @@ class ProcessSalaries(ProcessJobs):
             raise ValueError("Nenhum salário mínimo válido encontrado.")
         return min(min_salaries)
 
-    def matches_salary_range(self, job: Dict[str, str], salary: Union[int, str]) -> bool:
-     
+    def matches_salary_range(
+        self, job: Dict[str, str], 
+        salary: Union[int, str]
+    ) -> bool:
         try:
             salary = int(salary)
             max_salary = int(job["max_salary"])
@@ -41,7 +41,8 @@ class ProcessSalaries(ProcessJobs):
         return min_salary <= salary <= max_salary
 
     def filter_by_salary_range(
-        self, jobs: List[Dict[str, str]], salary: Union[str, int]
+        self, jobs: List[Dict[str, str]], 
+        salary: Union[str, int]
     ) -> List[Dict[str, str]]:
 
         try:
@@ -55,7 +56,6 @@ class ProcessSalaries(ProcessJobs):
                 if self.matches_salary_range(job, salary):
                     filtered_jobs.append(job)
             except ValueError:
-                # Se o job não tem salários válidos, não adiciona ao filtro
                 continue
 
         return filtered_jobs
