@@ -38,5 +38,5 @@ class ProcessJobs:
             job
             for job in jobs
             if job.get("industry") == industry 
-                and job.get("job_type") == job_type
+                    and job.get("job_type") == job_type
         ]
