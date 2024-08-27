@@ -50,12 +50,14 @@ class ProcessSalaries(ProcessJobs):
         except ValueError:
             raise ValueError("O salário deve ser um número inteiro.")
 
-        filtered_jobs = []
-        for job in jobs:
-            try:
-                if self.matches_salary_range(job, salary):
-                    filtered_jobs.append(job)
-            except ValueError:
-                continue
+        return [
+            job
+            for job in jobs
+            if self._is_valid_salary_range(job, salary)
+        ]
 
-        return filtered_jobs
+    def _is_valid_salary_range(self, job: Dict[str, str], salary: int) -> bool:
+        try:
+            return self.matches_salary_range(job, salary)
+        except ValueError:
+            return False
