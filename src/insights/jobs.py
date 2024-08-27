@@ -26,9 +26,8 @@ class ProcessJobs:
     def filter_by_multiple_criteria(
         self, jobs: List[Dict[str, str]], filter: Dict[str, str]
     ) -> List[Dict[str, str]]:
-       
         if not isinstance(filter, dict):
-         raise TypeError("O filtro deve ser um dicionário")
+            raise TypeError("O filtro deve ser um dicionário")
         industry = filter.get("industry")
         job_type = filter.get("job_type")
 
@@ -39,5 +38,5 @@ class ProcessJobs:
             job
             for job in jobs
             if job.get("industry") == industry and
-             job.get("job_type") == job_type
+                job.get("job_type") == job_type
         ]
